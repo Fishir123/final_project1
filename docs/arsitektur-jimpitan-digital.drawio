@@ -1,0 +1,239 @@
+<mxfile host="app.diagrams.net" modified="2026-05-25T00:00:00.000Z" agent="pi-coding-agent" version="24.7.17">
+  <diagram id="architecture" name="Arsitektur Aplikasi">
+    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="title" value="Desain Arsitektur Project Jimpitan Digital" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=24;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="410" y="20" width="780" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="clientsGroup" value="Client Layer" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#e8f1ff;strokeColor=#6c8ebf;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="40" y="100" width="320" height="630" as="geometry"/>
+        </mxCell>
+        <mxCell id="web" value="Web Frontend&#xa;React.js&#xa;frontend/src&#xa;&#xa;Fitur:&#xa;- Login/Register&#xa;- Dashboard Warga&#xa;- Dashboard Admin&#xa;- CRUD Iuran&#xa;- CRUD Pemasukan/Pengeluaran&#xa;- Verifikasi Usulan&#xa;- Pembayaran QRIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13" vertex="1" parent="clientsGroup">
+          <mxGeometry x="40" y="70" width="240" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="mobile" value="Mobile App&#xa;Flutter/Dart&#xa;mobile/lib/main.dart&#xa;&#xa;API URL:&#xa;--dart-define=API_URL=...&#xa;&#xa;Fitur:&#xa;- Login/Register&#xa;- Warga: laporan, usulan, iuran QRIS&#xa;- Admin: laporan, iuran, usulan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="clientsGroup">
+          <mxGeometry x="40" y="340" width="240" height="220" as="geometry"/>
+        </mxCell>
+        <mxCell id="apiGroup" value="Backend/API Layer" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="440" y="100" width="460" height="760" as="geometry"/>
+        </mxCell>
+        <mxCell id="express" value="Express.js REST API&#xa;backend/app.js&#xa;&#xa;Middleware:&#xa;- cors&#xa;- express.json&#xa;- cookie-parser&#xa;- morgan&#xa;- static public/uploads" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13" vertex="1" parent="apiGroup">
+          <mxGeometry x="80" y="55" width="300" height="135" as="geometry"/>
+        </mxCell>
+        <mxCell id="authmw" value="Auth &amp; Authorization&#xa;backend/config/middleware&#xa;&#xa;verifyToken JWT&#xa;authorizeRole(admin/warga)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13" vertex="1" parent="apiGroup">
+          <mxGeometry x="80" y="215" width="300" height="90" as="geometry"/>
+        </mxCell>
+        <mxCell id="routes" value="Routes&#xa;&#xa;/api/login&#xa;/api/register&#xa;/api/warga/laporan&#xa;/api/warga/usulan&#xa;/api/warga/iuran&#xa;/api/admin/laporan&#xa;/api/admin/usulan&#xa;/api/admin/iuran&#xa;/api/admin/pemasukan&#xa;/api/admin/pengeluaran&#xa;/api/midtrans/notification" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="apiGroup">
+          <mxGeometry x="40" y="330" width="180" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="models" value="Model/Data Access&#xa;backend/model&#xa;&#xa;Model_Users&#xa;Model_Iuran&#xa;Model_Pembayaran&#xa;Model_Usulan&#xa;Model_Pemasukan&#xa;Model_Pengeluaran&#xa;Model_Laporan" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="apiGroup">
+          <mxGeometry x="250" y="330" width="170" height="250" as="geometry"/>
+        </mxCell>
+        <mxCell id="midtransCfg" value="Midtrans Helper&#xa;backend/config/midtrans.js&#xa;&#xa;- createSnapTransaction()&#xa;- getTransactionStatus()&#xa;- verifySignature()&#xa;- mapMidtransStatus()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13" vertex="1" parent="apiGroup">
+          <mxGeometry x="80" y="620" width="300" height="105" as="geometry"/>
+        </mxCell>
+        <mxCell id="dataGroup" value="Data &amp; External Services Layer" style="swimlane;whiteSpace=wrap;html=1;rounded=1;fillColor=#f5f5f5;strokeColor=#666666;fontStyle=1;fontSize=16" vertex="1" parent="1">
+          <mxGeometry x="990" y="100" width="560" height="760" as="geometry"/>
+        </mxCell>
+        <mxCell id="db" value="MySQL/MariaDB&#xa;Database: jimpitan_digital&#xa;&#xa;Tabel utama:&#xa;- users&#xa;- warga&#xa;- iuran&#xa;- pembayaran&#xa;- usulan&#xa;- pemasukan&#xa;- pengeluaran&#xa;- laporan_keuangan" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="dataGroup">
+          <mxGeometry x="70" y="80" width="200" height="260" as="geometry"/>
+        </mxCell>
+        <mxCell id="uploads" value="File Storage Lokal&#xa;backend/public/uploads&#xa;&#xa;Bukti pengeluaran:&#xa;uploads/bukti-pengeluaran" style="shape=folder;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="dataGroup">
+          <mxGeometry x="320" y="95" width="190" height="115" as="geometry"/>
+        </mxCell>
+        <mxCell id="midtransExternal" value="Midtrans Snap API&#xa;&#xa;Sandbox:&#xa;https://app.sandbox.midtrans.com/snap/v1/transactions&#xa;&#xa;Production:&#xa;https://app.midtrans.com/snap/v1/transactions&#xa;&#xa;Payment: QRIS/Snap Redirect" style="cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13" vertex="1" parent="dataGroup">
+          <mxGeometry x="80" y="420" width="390" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="env" value="Environment Config&#xa;&#xa;backend/.env:&#xa;- DB_HOST/DB_USER/DB_PASSWORD/DB_NAME&#xa;- JWT_SECRET&#xa;- MIDTRANS_SERVER_KEY&#xa;- MIDTRANS_CLIENT_KEY&#xa;- MIDTRANS_IS_PRODUCTION&#xa;- DEFAULT_ADMIN_ID&#xa;&#xa;frontend/.env:&#xa;- REACT_APP_API_URL&#xa;&#xa;mobile:&#xa;- --dart-define=API_URL=..." style="note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;fillColor=#f8cecc;strokeColor=#b85450;fontSize=12" vertex="1" parent="dataGroup">
+          <mxGeometry x="300" y="240" width="230" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeWebApi" value="HTTP/JSON REST&#xa;Bearer JWT" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#6c8ebf;fontSize=12" edge="1" parent="1" source="web" target="express">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeMobileApi" value="HTTP/JSON REST&#xa;Bearer JWT" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;fontSize=12" edge="1" parent="1" source="mobile" target="express">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeExpressAuth" value="protected routes" style="endArrow=block;html=1;rounded=0;strokeColor=#b85450" edge="1" parent="1" source="express" target="authmw">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeAuthRoutes" value="route handlers" style="endArrow=block;html=1;rounded=0;strokeColor=#d6b656" edge="1" parent="1" source="authmw" target="routes">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeRoutesModels" value="call model" style="endArrow=block;html=1;rounded=0;strokeColor=#d6b656" edge="1" parent="1" source="routes" target="models">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeModelsDb" value="mysql2 query" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#82b366;fontSize=12" edge="1" parent="1" source="models" target="db">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeRoutesUploads" value="multer upload / static files" style="endArrow=block;html=1;rounded=0;strokeColor=#d79b00;fontSize=12" edge="1" parent="1" source="routes" target="uploads">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeRoutesMidtransCfg" value="bayar-qris / sync" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="routes" target="midtransCfg">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeCfgMidtrans" value="create Snap transaction / status check" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="midtransCfg" target="midtransExternal">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="edgeMidtransNotify" value="payment notification webhook&#xa;POST /api/midtrans/notification" style="endArrow=block;html=1;rounded=0;strokeWidth=2;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="midtransExternal" target="routes">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1220" y="650"/>
+              <mxPoint x="650" y="650"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edgeEnvApi" value="env vars" style="endArrow=open;html=1;rounded=0;dashed=1;strokeColor=#b85450;fontSize=12" edge="1" parent="1" source="env" target="express">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="flow" name="Flow Pembayaran QRIS">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="flowTitle" value="Sequence Flow Pembayaran Iuran QRIS via Midtrans Snap" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="250" y="20" width="900" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="actorUser" value="Warga&#xa;Web/Mobile" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="80" y="110" width="70" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="clientBox" value="Client App&#xa;React/Flutter" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="230" y="120" width="160" height="80" as="geometry"/>
+        </mxCell>
+        <mxCell id="routeBox" value="Backend Route&#xa;POST /api/warga/iuran/:id/bayar-qris&#xa;backend/routes/warga/iuran.js" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="480" y="110" width="230" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="modelBox" value="Model_Pembayaran&#xa;createPendingQrisPayment()&#xa;updateMidtransInfo()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="790" y="110" width="210" height="100" as="geometry"/>
+        </mxCell>
+        <mxCell id="dbBox" value="MySQL/MariaDB&#xa;tabel pembayaran, iuran, warga, pemasukan" style="shape=cylinder3d;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="1080" y="100" width="190" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="midtransBox" value="Midtrans Snap API&#xa;Create Snap Transaction&#xa;Status API&#xa;Notification Webhook" style="cloud;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="600" y="420" width="260" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="notifRoute" value="Backend Notification Route&#xa;POST /api/midtrans/notification&#xa;verifySignature()&#xa;updateStatusByOrderId()" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13" vertex="1" parent="1">
+          <mxGeometry x="920" y="430" width="250" height="120" as="geometry"/>
+        </mxCell>
+        <mxCell id="s1" value="1. Klik Bayar QRIS" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="actorUser" target="clientBox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s2" value="2. POST bayar-qris + JWT" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="clientBox" target="routeBox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s3" value="3. validasi token/role, ambil iuran, buat orderId" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="routeBox" target="modelBox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s4" value="4. INSERT pembayaran status pending" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="modelBox" target="dbBox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s5" value="5. createSnapTransaction(payload)" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="routeBox" target="midtransBox">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s6" value="6. snap_token + redirect_url" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="midtransBox" target="routeBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="610" y="370"/>
+              <mxPoint x="540" y="370"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s7" value="7. update catatan snap_token/redirect_url" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="routeBox" target="modelBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="710" y="255"/>
+              <mxPoint x="790" y="255"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s8" value="8. response ke client" style="endArrow=block;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="routeBox" target="clientBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="285"/>
+              <mxPoint x="310" y="285"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s9" value="9. buka redirect_url / Snap" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="clientBox" target="midtransBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="485"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s10" value="10. pembayaran selesai/pending/gagal" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="actorUser" target="midtransBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="115" y="485"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s11" value="11. webhook notification" style="endArrow=block;html=1;rounded=0;strokeColor=#9673a6;fontSize=12" edge="1" parent="1" source="midtransBox" target="notifRoute">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+        <mxCell id="s12" value="12. update status pembayaran&#xa;+ buat pemasukan jika diterima" style="endArrow=block;html=1;rounded=0;strokeColor=#82b366;fontSize=12" edge="1" parent="1" source="notifRoute" target="dbBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1175" y="485"/>
+              <mxPoint x="1175" y="220"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="s13" value="Opsional: client sync status&#xa;POST /api/warga/iuran/pembayaran/:orderId/sync" style="endArrow=block;html=1;rounded=0;dashed=1;strokeColor=#6c8ebf;fontSize=12" edge="1" parent="1" source="clientBox" target="routeBox">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="310" y="340"/>
+              <mxPoint x="595" y="340"/>
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="erd" name="ERD Database Ringkas">
+    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1400" pageHeight="900" math="0" shadow="0">
+      <root>
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+        <mxCell id="erdTitle" value="ERD Ringkas Database jimpitan_digital" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=22;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="320" y="20" width="760" height="40" as="geometry"/>
+        </mxCell>
+        <mxCell id="tUsers" value="users&#xa;PK id&#xa;nama&#xa;email UNIQUE&#xa;password&#xa;no_hp&#xa;role: admin/warga&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="70" y="110" width="190" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="tWarga" value="warga&#xa;PK id&#xa;FK user_id -&gt; users.id&#xa;nik UNIQUE&#xa;alamat&#xa;rt_rw&#xa;status_warga&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="350" y="110" width="210" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="tIuran" value="iuran&#xa;PK id&#xa;nama_iuran&#xa;jumlah&#xa;keterangan&#xa;created_at&#xa;admin_id opsional" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="650" y="110" width="190" height="130" as="geometry"/>
+        </mxCell>
+        <mxCell id="tPembayaran" value="pembayaran&#xa;PK id&#xa;FK warga_id -&gt; warga.id&#xa;FK iuran_id -&gt; iuran.id&#xa;jumlah_bayar&#xa;tanggal_bayar&#xa;status: pending/verifikasi/ditolak/diterima&#xa;bukti_transfer/order_id&#xa;catatan JSON Midtrans&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="950" y="95" width="270" height="200" as="geometry"/>
+        </mxCell>
+        <mxCell id="tUsulan" value="usulan&#xa;PK id&#xa;FK warga_id -&gt; warga.id&#xa;judul&#xa;deskripsi&#xa;status: pending/diproses/diterima/ditolak&#xa;tanggapan_admin&#xa;created_at&#xa;updated_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="350" y="380" width="260" height="170" as="geometry"/>
+        </mxCell>
+        <mxCell id="tPemasukan" value="pemasukan&#xa;PK id&#xa;FK admin_id -&gt; users.id&#xa;sumber&#xa;keterangan&#xa;jumlah&#xa;tanggal&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="70" y="380" width="210" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="tPengeluaran" value="pengeluaran&#xa;PK id&#xa;FK admin_id -&gt; users.id&#xa;kategori&#xa;keterangan&#xa;jumlah&#xa;tanggal&#xa;bukti&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="700" y="380" width="220" height="160" as="geometry"/>
+        </mxCell>
+        <mxCell id="tLaporan" value="laporan_keuangan&#xa;PK id&#xa;FK admin_id -&gt; users.id&#xa;periode&#xa;total_pemasukan&#xa;total_pengeluaran&#xa;saldo&#xa;created_at" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=left;spacingLeft=10" vertex="1" parent="1">
+          <mxGeometry x="1000" y="380" width="230" height="150" as="geometry"/>
+        </mxCell>
+        <mxCell id="eUserWarga" value="1 : 1" style="endArrow=ERone;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tUsers" target="tWarga"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eWargaBayar" value="1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tWarga" target="tPembayaran"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eIuranBayar" value="1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tIuran" target="tPembayaran"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eWargaUsulan" value="1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tWarga" target="tUsulan"><mxGeometry relative="1" as="geometry"/></mxCell>
+        <mxCell id="eUserPemasukan" value="admin 1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tUsers" target="tPemasukan"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="165" y="330"/><mxPoint x="175" y="330"/></Array></mxGeometry></mxCell>
+        <mxCell id="eUserPengeluaran" value="admin 1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tUsers" target="tPengeluaran"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="165" y="330"/><mxPoint x="810" y="330"/></Array></mxGeometry></mxCell>
+        <mxCell id="eUserLaporan" value="admin 1 : N" style="endArrow=ERmany;startArrow=ERone;html=1;rounded=0;fontSize=12" edge="1" parent="1" source="tUsers" target="tLaporan"><mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="165" y="330"/><mxPoint x="1115" y="330"/></Array></mxGeometry></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
